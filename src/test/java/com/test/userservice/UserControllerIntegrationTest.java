@@ -80,21 +80,4 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("code", is("USER_ALREADY_EXISTS")))
                 .andExpect(jsonPath("description", is("A user with the given username already exists")));
     }
-
-    @Test
-    public void registerNotValidUserName() throws Exception {
-
-        UserRegistryModel userRegistryModel = new UserRegistryModel();
-        userRegistryModel.setFirstName("UserName");
-        userRegistryModel.setLastName("UserLastName");
-        userRegistryModel.setPassword("1111");
-
-        String userRegistryString = objectMapper.writeValueAsString(userRegistryModel);
-
-        mvc.perform(post("/userservice/register")
-                .accept(MediaType.APPLICATION_JSON)
-                .content(userRegistryString)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
-    }
 }

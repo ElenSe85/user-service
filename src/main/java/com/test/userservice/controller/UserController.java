@@ -27,6 +27,7 @@ public class UserController {
     @PostMapping("/register")
     public UserResponseModel registerUser(@Valid @RequestBody UserRegistryModel userRegistryModel)
             throws UserAlreadyExistsException {
+
         return userService.registerUser(userRegistryModel);
     }
 
